@@ -41,3 +41,19 @@ def divide_nums():
     divide=div(a,b)
     return str(divide)
 
+operators = {
+        "add": add,
+        "sub": sub,
+        "mult": mult,
+        "div": div,
+        }
+
+@app.route("/math/<oper>")
+def do_math(oper):
+    """Do math on a and b."""
+
+    a = int(request.args.get("a"))
+    b = int(request.args.get("b"))
+    result = operators[oper](a, b)
+
+    return str(result)
